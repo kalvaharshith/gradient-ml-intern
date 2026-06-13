@@ -40,7 +40,7 @@ where $H(k) = \ln(k) + 0.5772$ (Euler-Mascheroni constant, the harmonic number a
 ## 4. How It Works — Step by Step
 
 1. **Subsample** — draw `max_samples` (default 256) points randomly from training data.
-2. **Build Isolation Tree** - recursively partition: pick a random feature, pick a random split value between the feature's min and max, separate data into left (< split) and right (≥ split) until each point is isolated or max depth $\lceil\log2(\text{max\_samples})\rceil$ is reached.
+2. **Build Isolation Tree** - recursively partition: pick a random feature, pick a random split value between the feature's min and max, separate data into left (< split) and right (≥ split) until each point is isolated or max depth is reached.
 3. **Repeat** — build `n_estimators` trees (default 100), each on a fresh subsample.
 4. **Score** — for a test point, traverse each tree and record the path length (depth to reach a leaf + adjustment $c(\text{leaf size})$). Average across all trees.
 5. **Decide** — use the anomaly score formula; points above a threshold (or the top `contamination` fraction) are flagged.
